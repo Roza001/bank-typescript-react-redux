@@ -1,9 +1,49 @@
 .App {
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 body {
   margin: 0px;
   padding: 0px;
   background-color: beige;
+}
+
+.mainCard{
+  background-color: rgba(165, 42, 42, 1);
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+  height: fit-content;
+  border-radius:10px; 
+  box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.5);
+  padding: 1em;
+}
+
+.mainCard input {
+  border-radius: 5px;
+  height: 30px;
+  margin-right: 1em;
+}
+
+.button1{
+  display:inline-block;
+  padding:0.7em 1.7em;
+  margin:0 0.3em 0.3em 0;
+  border-radius:0.2em;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-weight: bolder;
+  color:#571414;
+  background-color:#a6b3d6;
+  box-shadow:inset 0 -0.6em 1em -0.35em rgba(0,0,0,0.17),inset 0 0.6em 2em -0.3em rgba(255,255,255,0.15),inset 0 0 0em 0.05em rgba(255,255,255,0.12);
+  text-align:center;
+  position:relative;
+}
+
+.button1:hover{
+  box-shadow:inset 0 0.6em 2em -0.3em rgba(0,0,0,0.15),inset 0 0 0em 0.05em rgba(255,255,255,0.12);
 }
