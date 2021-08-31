@@ -1,24 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {ChangeEvent, useState} from 'react';
 import './App.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actionCreators from "./state/action-creators/actionCreators";
+import { State } from './state/reducers/combined';
 
 function App() {
+
+  const dispatch = useDispatch();
+  const { depositMoney, withdrawMoney } = bindActionCreators(actionCreators, dispatch);
+  const amount = useSelector((state: State) => state.bank);
+
+  const [value, setValue] = useState<number>(0);
+
+  const handleValChange = (e:ChangeEvent<HTMLInputElement>):void => {
+    setValue(Number(e.target.value));
+  }
+
+  const click = (type:string):void => {
+    switch(type){
+      case "deposit":
+        depositMoney(value);
+        setValue(0);
+        break;
+      case "withdraw":
+        withdrawMoney(value);
+        setValue(0);
+        break;
+      default:
+        break;
+    }
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>{amount}</h1>
+      <input  
+        type="number"
+        name="val"
+        value={value}
+        onChange={handleValChange}
+      />
+      <button onClick={() => click("deposit")}>Deposit</button>
+      <button onClick={() => click("withdraw")}>Withdraw</button>
     </div>
   );
 }
